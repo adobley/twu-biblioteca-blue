@@ -37,7 +37,11 @@ public class Library {
     public void checkoutBook() {
         printStream.println("Please select a book to checkout: ");
         int index = inputReader.readInt() - 1;
-        books.remove(index);
-        printStream.println("Thank you! Enjoy the book");
+        if (index >= 0 && index < books.size()) {
+            books.remove(index);
+            printStream.println("Thank you! Enjoy the book");
+        } else {
+            printStream.println("That book is not available.");
+        }
     }
 }

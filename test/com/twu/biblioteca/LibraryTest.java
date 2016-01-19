@@ -82,4 +82,13 @@ public class LibraryTest {
 
         verify(printStream, atLeastOnce()).println("Thank you! Enjoy the book");
     }
+
+    @Test
+    public void shouldDisplayNotAvailableWhenTryingToCheckoutBookNotInList() {
+        when(inputReader.readInt()).thenReturn(1);
+
+        library.checkoutBook();
+
+        verify(printStream, atLeastOnce()).println("That book is not available.");
+    }
 }
