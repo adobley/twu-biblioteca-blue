@@ -123,4 +123,14 @@ public class LibraryTest {
 
         verify(bookOne).formattedDetails();
     }
+
+    @Test
+    public void shouldDisplayThankYouWhenReturningBookSuccessfully() {
+        when(inputReader.readInt()).thenReturn(1);
+        checkedOutBooks.add(bookOne);
+
+        library.returnBook();
+
+        verify(printStream, atLeastOnce()).println("Thank you for returning the book.");
+    }
 }

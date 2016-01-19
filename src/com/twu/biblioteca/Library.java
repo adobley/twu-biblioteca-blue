@@ -32,7 +32,7 @@ public class Library {
 
         printStream.println("No. " + header);
 
-        for (Book book: bookList) {
+        for (Book book : bookList) {
             printStream.println("[" + bookIndex + "] " + book.formattedDetails());
             bookIndex++;
         }
@@ -61,5 +61,6 @@ public class Library {
         printStream.println("Please select a book to return: ");
         int index = inputReader.readInt() - 1;
         books.add(checkedOutBooks.remove(index));
+        printStream.println("Thank you for returning the book.");
     }
 }
