@@ -9,9 +9,7 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class LibraryTest {
 
@@ -72,5 +70,16 @@ public class LibraryTest {
         library.checkoutBook();
 
         assertThat(books.contains(bookOne), is(false));
+    }
+
+    @Test
+    public void shouldDisplaySuccessMessageWhenBookIsCheckedOut() {
+        when(inputReader.readInt()).thenReturn(1);
+        books.add(bookOne);
+        books.add(bookTwo);
+
+        library.checkoutBook();
+
+        verify(printStream, atLeastOnce()).println("Thank you! Enjoy the book");
     }
 }

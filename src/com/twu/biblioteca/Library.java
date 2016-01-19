@@ -38,5 +38,6 @@ public class Library {
         printStream.println("Please select a book to checkout: ");
         int index = inputReader.readInt() - 1;
         books.remove(index);
+        printStream.println("Thank you! Enjoy the book");
     }
 }
