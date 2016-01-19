@@ -19,6 +19,7 @@ public class LibraryTest {
     Book bookOne;
     Book bookTwo;
     InputReader inputReader;
+    List<Book> checkedOutBooks;
 
     @Before
     public void setup() {
@@ -28,14 +29,15 @@ public class LibraryTest {
         bookTwo = mock(Book.class);
 
         books = new ArrayList<>();
-        library = new Library(books, printStream, inputReader);
+        checkedOutBooks = new ArrayList<>();
+        library = new Library(books, checkedOutBooks, printStream, inputReader);
     }
 
     @Test
     public void shouldReturnOneFormattedBooksStringWhenOnlyOneBook() {
         books.add(bookOne);
 
-        library.bookList();
+        library.booksInLibrary();
 
         verify(bookOne).formattedDetails();
     }
@@ -46,7 +48,7 @@ public class LibraryTest {
         books.add(bookOne);
         books.add(bookTwo);
 
-        library.bookList();
+        library.booksInLibrary();
 
         verify(bookTwo).formattedDetails();
     }
@@ -90,5 +92,35 @@ public class LibraryTest {
         library.checkoutBook();
 
         verify(printStream, atLeastOnce()).println("That book is not available.");
+    }
+
+    @Test
+    public void shouldAddBookToListWhenBookIsReturned() {
+        when(inputReader.readInt()).thenReturn(1);
+        checkedOutBooks.add(bookOne);
+
+        library.returnBook();
+
+        assertThat(books.contains(bookOne), is(true));
+    }
+
+    @Test
+    public void shouldAddBookToCheckoutOutBooksListWhenBookIsCheckedOut() {
+        when(inputReader.readInt()).thenReturn(1);
+        books.add(bookOne);
+        books.add(bookTwo);
+
+        library.checkoutBook();
+
+        assertThat(checkedOutBooks.contains(bookOne), is(true));
+    }
+
+    @Test
+    public void shouldDisplayCheckedOutBooksWhenAskedForBooksCheckedOut() {
+        checkedOutBooks.add(bookOne);
+
+        library.booksCheckedOut();
+
+        verify(bookOne).formattedDetails();
     }
 }

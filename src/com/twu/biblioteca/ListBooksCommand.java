@@ -11,6 +11,6 @@ public class ListBooksCommand extends Command{
 
     @Override
     public void execute() {
-        library.bookList();
+        library.booksInLibrary();
     }
 }

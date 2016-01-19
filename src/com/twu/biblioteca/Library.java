@@ -5,16 +5,26 @@ import java.util.List;
 
 public class Library {
     private List<Book> books;
+    private List<Book> checkedOutBooks;
     private PrintStream printStream;
     private InputReader inputReader;
 
-    public Library(List<Book> books, PrintStream printStream, InputReader inputReader) {
+    public Library(List<Book> books, List<Book> checkedOutBooks, PrintStream printStream, InputReader inputReader) {
         this.books = books;
+        this.checkedOutBooks = checkedOutBooks;
         this.printStream = printStream;
         this.inputReader = inputReader;
     }
 
-    public void bookList() {
+    public void booksInLibrary() {
+        listBooks(books);
+    }
+
+    public void booksCheckedOut() {
+        listBooks(checkedOutBooks);
+    }
+
+    private void listBooks(List<Book> bookList) {
         Formatter formatter = new Formatter();
         String header = formatHeader(formatter);
 
@@ -22,7 +32,7 @@ public class Library {
 
         printStream.println("No. " + header);
 
-        for (Book book: books) {
+        for (Book book: bookList) {
             printStream.println("[" + bookIndex + "] " + book.formattedDetails());
             bookIndex++;
         }
@@ -35,13 +45,21 @@ public class Library {
     }
 
     public void checkoutBook() {
+        booksInLibrary();
         printStream.println("Please select a book to checkout: ");
         int index = inputReader.readInt() - 1;
         if (index >= 0 && index < books.size()) {
-            books.remove(index);
+            checkedOutBooks.add(books.remove(index));
             printStream.println("Thank you! Enjoy the book");
         } else {
             printStream.println("That book is not available.");
         }
+    }
+
+    public void returnBook() {
+        booksCheckedOut();
+        printStream.println("Please select a book to return: ");
+        int index = inputReader.readInt() - 1;
+        books.add(checkedOutBooks.remove(index));
     }
 }
