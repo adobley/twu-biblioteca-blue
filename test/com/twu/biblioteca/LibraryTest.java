@@ -42,7 +42,6 @@ public class LibraryTest {
         verify(bookOne).formattedDetails();
     }
 
-
     @Test
     public void shouldReturnSecondFormattedBookWhenMultipleBooksExist() {
         books.add(bookOne);
@@ -91,7 +90,7 @@ public class LibraryTest {
 
         library.checkoutBook();
 
-        verify(printStream, atLeastOnce()).println("That book is not available.");
+        verify(printStream, atLeastOnce()).println("That is not a valid book option.");
     }
 
     @Test
@@ -140,6 +139,6 @@ public class LibraryTest {
 
         library.returnBook();
 
-        verify(printStream, atLeastOnce()).println("That is not a valid book to return.");
+        verify(printStream, atLeastOnce()).println("That is not a valid book option.");
     }
 }

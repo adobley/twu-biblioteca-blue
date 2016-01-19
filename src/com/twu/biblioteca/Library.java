@@ -52,7 +52,7 @@ public class Library {
             checkedOutBooks.add(books.remove(index));
             printStream.println("Thank you! Enjoy the book");
         } else {
-            printStream.println("That book is not available.");
+            printStream.println("That is not a valid book option.");
         }
     }
 
@@ -65,7 +65,7 @@ public class Library {
             books.add(checkedOutBooks.remove(index));
             printStream.println("Thank you for returning the book.");
         } else {
-            printStream.println("That is not a valid book to return.");
+            printStream.println("That is not a valid book option.");
         }
     }
 }
