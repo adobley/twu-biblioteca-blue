@@ -30,6 +30,7 @@ public class Library {
 
         int bookIndex = 1;
 
+        printStream.println();
         printStream.println("No. " + header);
 
         for (Book book : bookList) {
