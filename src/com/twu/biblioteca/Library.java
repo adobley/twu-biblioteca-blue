@@ -6,10 +6,12 @@ import java.util.List;
 public class Library {
     private List<Book> books;
     private PrintStream printStream;
+    private InputReader inputReader;
 
-    public Library(List<Book> books, PrintStream printStream) {
+    public Library(List<Book> books, PrintStream printStream, InputReader inputReader) {
         this.books = books;
         this.printStream = printStream;
+        this.inputReader = inputReader;
     }
 
     public void bookList() {
@@ -32,8 +34,9 @@ public class Library {
         return formatter.formatSubstring("Title", 25) + formatter.formatSubstring("Author", 25) + formatter.formatSubstring("Year", 4);
     }
 
-    public void checkoutBook(int bookIndex) {
-        int index = bookIndex - 1;
+    public void checkoutBook() {
+        printStream.println("Please select a book to checkout: ");
+        int index = inputReader.readInt() - 1;
         books.remove(index);
     }
 }

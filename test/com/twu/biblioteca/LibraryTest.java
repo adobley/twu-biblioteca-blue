@@ -11,6 +11,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class LibraryTest {
 
@@ -19,15 +20,17 @@ public class LibraryTest {
     Library library;
     Book bookOne;
     Book bookTwo;
+    InputReader inputReader;
 
     @Before
     public void setup() {
         printStream = mock(PrintStream.class);
+        inputReader = mock(InputReader.class);
         bookOne = mock(Book.class);
         bookTwo = mock(Book.class);
 
         books = new ArrayList<>();
-        library = new Library(books, printStream);
+        library = new Library(books, printStream, inputReader);
     }
 
     @Test
@@ -51,11 +54,22 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldRemoveBookByIndexFromListWhenBookIsCheckedOut() {
+    public void shouldReadInputWhenCheckingOutBook() {
+        when(inputReader.readInt()).thenReturn(1);
+        books.add(bookOne);
+
+        library.checkoutBook();
+
+        verify(inputReader).readInt();
+    }
+
+    @Test
+    public void shouldRemoveBookFromListWhenBookIsCheckedOut() {
+        when(inputReader.readInt()).thenReturn(1);
         books.add(bookOne);
         books.add(bookTwo);
 
-        library.checkoutBook(1);
+        library.checkoutBook();
 
         assertThat(books.contains(bookOne), is(false));
     }
