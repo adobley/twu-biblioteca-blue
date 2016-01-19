@@ -38,5 +38,4 @@ public class Menu {
 
         printStream.println("Please select an option.");
     }
-
 }

@@ -21,7 +21,8 @@ public class Main {
         ApplicationState applicationState = new ApplicationState();
         Map<Integer, Command> commandMap = new HashMap<>();
         commandMap.put(1, new ListBooksCommand("List Books", library));
-        commandMap.put(2, new QuitCommand("Quit", applicationState));
+        commandMap.put(2, new CheckoutBookCommand("Checkout Book", library, inputReader));
+        commandMap.put(3, new QuitCommand("Quit", applicationState));
 
         Menu menu = new Menu(printStream, inputReader, commandMap);
 
