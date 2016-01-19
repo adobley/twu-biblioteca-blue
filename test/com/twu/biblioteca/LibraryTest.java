@@ -133,4 +133,13 @@ public class LibraryTest {
 
         verify(printStream, atLeastOnce()).println("Thank you for returning the book.");
     }
+
+    @Test
+    public void shouldDisplayInvalidSelectionMessageWhenReturningBookUnsuccessfully() {
+        when(inputReader.readInt()).thenReturn(1);
+
+        library.returnBook();
+
+        verify(printStream, atLeastOnce()).println("That is not a valid book to return.");
+    }
 }

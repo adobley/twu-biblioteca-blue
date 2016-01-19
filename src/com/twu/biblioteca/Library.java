@@ -60,7 +60,11 @@ public class Library {
         booksCheckedOut();
         printStream.println("Please select a book to return: ");
         int index = inputReader.readInt() - 1;
-        books.add(checkedOutBooks.remove(index));
-        printStream.println("Thank you for returning the book.");
+        if (index >= 0 && index < checkedOutBooks.size()) {
+            books.add(checkedOutBooks.remove(index));
+            printStream.println("Thank you for returning the book.");
+        } else {
+            printStream.println("That is not a valid book to return.");
+        }
     }
 }
