@@ -33,7 +33,7 @@ public class Main {
     private static List<Book> bookList() {
         List<Book> books = new ArrayList<>();
         books.add(new Book("Dracula", "Bram Stoker", "1875"));
-        books.add(new Book("Moby Dick", "Sherman Melville", "1890"));
+        books.add(new Book("Moby Dick", "Herman Melville", "1890"));
         return books;
     }
 }

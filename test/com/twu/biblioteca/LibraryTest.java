@@ -7,6 +7,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -46,5 +48,15 @@ public class LibraryTest {
         library.bookList();
 
         verify(bookTwo).formattedDetails();
+    }
+
+    @Test
+    public void shouldRemoveBookByIndexFromListWhenBookIsCheckedOut() {
+        books.add(bookOne);
+        books.add(bookTwo);
+
+        library.checkoutBook(1);
+
+        assertThat(books.contains(bookOne), is(false));
     }
 }

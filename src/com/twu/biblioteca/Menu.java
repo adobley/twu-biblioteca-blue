@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.io.PrintStream;
-import java.util.List;
 import java.util.Map;
 
 public class Menu {
@@ -19,7 +18,7 @@ public class Menu {
 
     public void launch() {
         displayOptions();
-        int optionNumber = inputReader.read();
+        int optionNumber = inputReader.readInt();
         executeCommand(optionNumber);
     }
 

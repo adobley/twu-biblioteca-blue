@@ -16,14 +16,24 @@ public class Library {
         Formatter formatter = new Formatter();
         String header = formatHeader(formatter);
 
-        printStream.println(header);
+        int bookIndex = 1;
+
+        printStream.println("No. " + header);
 
         for (Book book: books) {
-            printStream.println(book.formattedDetails());
+            printStream.println("[" + bookIndex + "] " + book.formattedDetails());
+            bookIndex++;
         }
+
+        printStream.println();
     }
 
     private String formatHeader(Formatter formatter) {
         return formatter.formatSubstring("Title", 25) + formatter.formatSubstring("Author", 25) + formatter.formatSubstring("Year", 4);
+    }
+
+    public void checkoutBook(int bookIndex) {
+        int index = bookIndex - 1;
+        books.remove(index);
     }
 }

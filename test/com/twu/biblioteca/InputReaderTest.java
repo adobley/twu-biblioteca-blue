@@ -26,9 +26,18 @@ public class InputReaderTest {
     public void shouldReadUserInputAfterPrompt() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
 
-        int option = inputReader.read();
+        int option = inputReader.readInt();
 
         assertThat(option, is(1));
+    }
+
+    @Test
+    public void shouldReturnStringWhenReadingString() throws IOException {
+        when(bufferedReader.readLine()).thenReturn("Some string");
+
+        String line = inputReader.readString();
+
+        assertThat(line, is("Some string"));
     }
 
 }

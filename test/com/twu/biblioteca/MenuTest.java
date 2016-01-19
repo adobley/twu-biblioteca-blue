@@ -4,9 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.mockito.Matchers.contains;
@@ -63,12 +61,12 @@ public class MenuTest {
     public void shouldReadInputWhenLaunching() {
         menu.launch();
 
-        verify(inputReader).read();
+        verify(inputReader).readInt();
     }
 
     @Test
     public void shouldExecuteValidOptionWhenLaunching() {
-        when(inputReader.read()).thenReturn(1);
+        when(inputReader.readInt()).thenReturn(1);
         ListBooksCommand listBooksCommand = mock(ListBooksCommand.class);
         commandMap.put(1, listBooksCommand);
 

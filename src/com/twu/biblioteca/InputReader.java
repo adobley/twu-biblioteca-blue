@@ -10,14 +10,19 @@ public class InputReader {
         this.bufferedReader = bufferedReader;
     }
 
-    public int read() {
-        int option = 0;
+    public int readInt() {
+        return Integer.parseInt(readString());
+    }
+
+    public String readString() {
+        String string = "";
+
         try {
-            option = Integer.parseInt(bufferedReader.readLine());
+            string = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return option;
+        return string;
     }
 }
