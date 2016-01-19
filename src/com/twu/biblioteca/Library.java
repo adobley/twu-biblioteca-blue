@@ -37,8 +37,6 @@ public class Library {
             printStream.println("[" + bookIndex + "] " + book.formattedDetails());
             bookIndex++;
         }
-
-        printStream.println();
     }
 
     private String formatHeader(Formatter formatter) {
@@ -46,8 +44,9 @@ public class Library {
     }
 
     public void checkoutBook() {
+        printStream.println("\nPlease select a book to checkout: ");
         booksInLibrary();
-        printStream.println("Please select a book to checkout: ");
+        printStream.print(">> ");
         int index = inputReader.readInt() - 1;
         if (index >= 0 && index < books.size()) {
             checkedOutBooks.add(books.remove(index));
@@ -58,8 +57,9 @@ public class Library {
     }
 
     public void returnBook() {
+        printStream.println("\nPlease select a book to return: ");
         booksCheckedOut();
-        printStream.println("Please select a book to return: ");
+        printStream.print(">> ");
         int index = inputReader.readInt() - 1;
         if (index >= 0 && index < checkedOutBooks.size()) {
             books.add(checkedOutBooks.remove(index));

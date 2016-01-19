@@ -18,6 +18,7 @@ public class Menu {
 
     public void launch() {
         displayOptions();
+        printStream.print(">> ");
         int optionNumber = inputReader.readInt();
         executeCommand(optionNumber);
     }
@@ -32,10 +33,9 @@ public class Menu {
     }
 
     private void displayOptions() {
+        printStream.println("\nPlease select an option.");
         for (Integer key : commandMap.keySet()) {
             printStream.println("[" + key + "] " + commandMap.get(key).getName());
         }
-
-        printStream.println("Please select an option.");
     }
 }
